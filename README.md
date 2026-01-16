@@ -26,7 +26,7 @@ The system is composed of five decoupled services running in a Dockerized enviro
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-link>
+    git clone https://github.com/kacperPrzelozny/async-image-processor
     cd async-image-processor
     ```
 
