@@ -23,9 +23,8 @@ RUN pecl install redis && docker-php-ext-enable redis
 COPY ../.. /var/www/app
 WORKDIR /var/www/app
 
-RUN chown -R www-data:www-data /var/www/app \
+RUN chown -R www-data:www-data /var/www/app/storage \
     && chmod -R 775 /var/www/app/storage
-
 
 # install composer
 COPY --from=composer:2.6.5 /usr/bin/composer /usr/local/bin/composer

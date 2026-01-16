@@ -45,6 +45,7 @@ The system is composed of five decoupled services running in a Dockerized enviro
     ```bash
     docker compose exec php composer install
     docker compose exec php php artisan migrate
+    docker compose exec php php artisan storage:link
     ```
 
 ---
