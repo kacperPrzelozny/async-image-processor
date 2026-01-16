@@ -48,6 +48,10 @@ The system is composed of five decoupled services running in a Dockerized enviro
     docker compose exec php php artisan storage:link
     ```
 
+5. **Add permissions to storage**
+    ```bash
+   chmod -R 777 storage/
+   ```
 ---
 
 ### 🛠️ How to Test
