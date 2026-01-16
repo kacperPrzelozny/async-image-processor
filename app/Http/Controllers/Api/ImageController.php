@@ -9,13 +9,20 @@ use App\Jobs\AddWatermarkJob;
 use App\Jobs\ChangeDimensionsJob;
 use App\Jobs\ConvertToWebpJob;
 use App\Models\Image;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 
 class ImageController extends Controller
 {
-    public function index()
+    public function get(int $id)
     {
+        try {
+            $image = Image::query()->findOrFail($id);
+        } catch (ModelNotFoundException) {
+            return $this->responseError("Image with id {$id} not found", code: 404);
+        }
 
+        return $this->responseSuccess(['image' => $image->toArray()]);
     }
 
     public function store(AddImageRequest $request): JsonResponse
@@ -76,6 +83,6 @@ class ImageController extends Controller
             );
         }
 
-        return $this->responseSuccess($image->toArray());
+        return $this->responseSuccess(['image' => $image->toArray()], 201);
     }
 }
