@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Api;
+namespace App\Http\Controllers\Api;
 
 use App\Enums\ImageAction;
 use App\Enums\ImageStatus;
@@ -57,7 +57,10 @@ class ImageController extends Controller
                     (int) $request->get('width'),
                     (int) $request->get('height'),
                 ),
-                ImageAction::WEBP => ConvertToWebpJob::dispatch($image),
+                ImageAction::WEBP => ConvertToWebpJob::dispatch(
+                    $image,
+                    (int) $request->get('quality'),
+                ),
                 ImageAction::WATERMARK => AddWatermarkJob::dispatch(
                     $image,
                     $request->get('watermark'),

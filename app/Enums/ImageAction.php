@@ -5,6 +5,6 @@ namespace App\Enums;
 enum ImageAction: string
 {
     case DIMENSIONS = 'changeDimensions';
-    case WEBP = 'changeToWebp';
+    case WEBP = 'convertToWebp';
     case WATERMARK = 'addWatermark';
 }

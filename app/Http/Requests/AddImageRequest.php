@@ -49,6 +49,13 @@ class AddImageRequest extends FormRequest
                 'min:1',
                 'max:1000'
             ],
+            'quality' => [
+                'required_if:action,' . ImageAction::WEBP->value,
+                'nullable',
+                'integer',
+                'min:1',
+                'max:100'
+            ],
             'watermark' => [
                 'required_if:action,' . ImageAction::WATERMARK->value,
                 'nullable',

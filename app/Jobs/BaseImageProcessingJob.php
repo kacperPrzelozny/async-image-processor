@@ -6,6 +6,7 @@ use App\Enums\ImageStatus;
 use App\Models\Image;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Log;
 
 abstract class BaseImageProcessingJob implements ShouldQueue
 {
@@ -35,6 +36,7 @@ abstract class BaseImageProcessingJob implements ShouldQueue
 
     public function failed(\Throwable $exception): void
     {
+        Log::error($exception->getMessage());
         $this->image->update([
             'status' => ImageStatus::FAILED
         ]);

@@ -2,8 +2,10 @@
 
 namespace App\Jobs;
 
-use App\Jobs\BaseImageProcessingJob;
 use App\Models\Image;
+use Illuminate\Support\Facades\Log;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class ChangeDimensionsJob extends BaseImageProcessingJob
 {
@@ -15,8 +17,18 @@ class ChangeDimensionsJob extends BaseImageProcessingJob
         parent::__construct($image);
     }
 
-    public function handleInner()
+    public function handleInner(): void
     {
-        // TODO: Implement handleInner() method.
+        Log::info('Changing dimensions');
+
+        $fullPath = storage_path('app/public/' . $this->image->storage_path);
+
+        $manager = new ImageManager(new Driver());
+
+        $img = $manager->read($fullPath);
+
+        $img->resize($this->width, $this->height);
+
+        $img->save($fullPath);
     }
 }
