@@ -1,14 +1,15 @@
 {
-    "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "kacper-przelozny/async-image-processor",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "intervention/image": "^3.11",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "predis/predis": "^3.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

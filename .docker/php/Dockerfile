@@ -3,15 +3,17 @@ FROM php:8.4-fpm
 
 # Install common php extension dependencies
 RUN apt-get update && apt-get install -y \
-    libfreetype-dev \
-    libjpeg62-turbo-dev \
     libpng-dev \
-    zlib1g-dev \
-    libzip-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
     unzip \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install zip
+    git \
+    curl \
+    libmariadb-dev
+
+RUN docker-php-ext-install pdo_mysql gd
+RUN pecl install redis && docker-php-ext-enable redis
 
 # Set the working directory
 COPY ../.. /var/www/app
